@@ -100,7 +100,6 @@ class threejsViewer {
 
             if (mesh == null) {
                 // �ҫ���l��
-                console.log('1')
                 let geometry = new THREE.BoxGeometry(dims[0], dims[1], dims[2]);
                 geometry.translate(dims[0]/2, dims[1]/2, dims[2]/2, );
                 let shader = VolumeRenderShader1;
@@ -131,7 +130,6 @@ class threejsViewer {
             }
             else if (volume.used && uniforms['u_sizeEnable'].value != 1) {
                 // Size data��l��
-                console.log('2')
                 uniforms = mesh.material.uniforms;
                 let texture = new THREE.DataTexture3D(volume.sizeData, dims[0], dims[1], dims[2]);
                 texture.format = THREE.RedFormat;
@@ -142,14 +140,12 @@ class threejsViewer {
             }
             else if (volume.used) {
                 // ��s�Ѽ�(�]�tsize data)
-                console.log('3')
                 uniforms = mesh.material.uniforms;
                 uniforms['u_sizeData'].value.image = {data: volume.sizeData};
                 uniforms['u_sizeData'].value.needUpdata = true;
             }
             else {
                 // ��s�Ѽ�
-                console.log('4')
                 uniforms = mesh.material.uniforms;
                 uniforms['u_cmdata'].value = new THREE.DataTexture(colormap,256,1);
                 uniforms['u_renderstyle'].value = arg.renderType;
